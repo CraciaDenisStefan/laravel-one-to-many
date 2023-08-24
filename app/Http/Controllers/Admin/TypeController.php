@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
@@ -28,7 +29,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -39,7 +40,20 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $form_data = $request->all();
+
+        $type = new Type();
+
+        if($request->hasFile('image_type')){
+
+            $path= Storage::put('types_image', $request->image_type);
+            $form_data['image_type']= $path;
+        }
+
+        $type->fill($form_data);
+        $type->save();
+
+        return redirect()->route('admin.types.index');
     }
 
     /**

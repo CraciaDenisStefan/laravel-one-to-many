@@ -21,7 +21,6 @@
           <tr >
             <th scope="row">{{$type->id}}</th>
             <td>{{$type->name}}</td>
-            <td>{{$type->image_type}}</td>
             <td><a href="{{route('admin.types.show', $type->id)}}"><i class="fa-solid fa-eye"></i></a></td>
             <td>
               <div class="d-flex">
