@@ -5,7 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Project;
+
 class Type extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name','image_type'];
+
+    public function projects(){
+        return $this->hasMany(Post::class);
+    }
 }

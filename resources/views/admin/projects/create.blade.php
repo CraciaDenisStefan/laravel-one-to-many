@@ -24,6 +24,19 @@
             @enderror
         </div>
         <div class="form-group m-3">
+            <label class="control-label">Tipologia</label>
+            <select class="form-select @error('type_id') is_invalid @enderror"  name="type_id" id="type_id">
+                <option value="">Seleziona tipologia</option>
+                @foreach($types as $type)
+                    <option value="{{$type->id}}">{{$type->name}}</option>
+                @endforeach
+            </select>
+            @error('type_id')
+            <div class="text-danger">{{$message}}</div>
+            @enderror
+
+        </div>
+        <div class="form-group m-3">
             <label class="control-label">Immagine</label>
             <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image')is-invalid @enderror">
             @error('cover_image')
