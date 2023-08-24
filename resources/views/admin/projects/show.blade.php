@@ -8,7 +8,11 @@
         <h1>{{$project->title}}</h1>
         <p class="mt-4">{{$project->description}}</p>
         <div class="col-4">
-            <img class="img-fluid" src="{{ asset('storage/'.$project->cover_image) }}">
+            @if(!empty($project->cover_image))
+                <img class="img-fluid" src="{{ asset('storage/'.$project->cover_image) }}">
+            @else 
+                Immagine non disponibile.
+            @endif
         </div>
         <div class="col-12">
             
