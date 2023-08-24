@@ -75,7 +75,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type') );
     }
 
     /**
@@ -87,7 +87,23 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $form_data = $request->all();
+
+
+        if($request->hasFile('image_type')){
+
+            if($type->image_type){
+                Storage::delete($type->image_type);
+            }
+
+            $path= Storage::put('types_image', $request->image_type);
+            $form_data['image_type']= $path;
+        }
+
+        $type->update($form_data);
+
+
+        return redirect()->route('admin.types.index');
     }
 
     /**
@@ -98,6 +114,12 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+       
+        if($type->image_type){
+            Storage::delete($type->image_type);
+        }
+        $type->delete();
+
+        return redirect()->route('admin.types.index');
     }
 }

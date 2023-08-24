@@ -19,6 +19,11 @@
             @if(!empty($project->type->name))
             Tipologia:
             {{ $project->type->name }}
+            <div class="col-2">     
+                @if(!empty($project->type->image_type))
+                    <img class="img-fluid" src="{{ asset('storage/'.$project->type->image_type) }}">
+                @endif
+            </div>
         @endif
         </div>
     </div>
