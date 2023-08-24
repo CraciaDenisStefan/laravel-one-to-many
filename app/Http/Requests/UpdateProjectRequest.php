@@ -27,7 +27,8 @@ class UpdateProjectRequest extends FormRequest
             'title' => 'required|max:100',
             'date'   => 'required',
             'description' => 'required',
-            'cover_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:250'
+            'cover_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:250',
+            'type_id'    => 'required|exists:types,id',
         ];
     }
     public function messages(){
@@ -39,7 +40,9 @@ class UpdateProjectRequest extends FormRequest
             'description.required' => 'La descrizione è obbligatoria !',
             'cover_image.image' =>'Il file deve essere un\'immagine!',
             'cover_image.max' => 'Il file immagine non deve superare :max KB!',
-            'cover_image.mimes' => 'Il file immagine deve essere in uno dei seguenti formati: jpeg, png, gif'
+            'cover_image.mimes' => 'Il file immagine deve essere in uno dei seguenti formati: jpeg, png, gif',
+            'type_id.required'  => 'Devi selezionare una categoria',
+            'type_id.exists'    => 'Categoria non valida',
         ];
     }
 }

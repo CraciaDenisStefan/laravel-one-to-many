@@ -10,6 +10,13 @@
         <div class="col-4">
             <img class="img-fluid" src="{{ asset('storage/'.$project->cover_image) }}">
         </div>
+        <div class="col-12">
+            
+            @if(!empty($project->type->name))
+            Tipologia:
+            {{ $project->type->name }}
+        @endif
+        </div>
     </div>
     
 
